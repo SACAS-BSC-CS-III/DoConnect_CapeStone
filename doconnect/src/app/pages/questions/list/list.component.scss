@@ -1,0 +1,48 @@
+.questions {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.1);
+
+  h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #003366;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid #e6f0ff;
+
+      a {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #4a90e2;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: #003366;
+        }
+      }
+
+      small {
+        display: block;
+        margin-top: 0.3rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+}

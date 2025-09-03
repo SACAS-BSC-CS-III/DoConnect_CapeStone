@@ -1,0 +1,14 @@
+<div class="questions">
+  <h2>Questions</h2>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <ul *ngIf="!loading && questions.length > 0">
+    <li *ngFor="let q of questions">
+      <a [routerLink]="['/questions', q.id]">{{ q.title }}</a>
+      <small>by {{ q.username }} on {{ q.createdAt | date:'short' }}</small>
+    </li>
+  </ul>
+
+  <p *ngIf="!loading && questions.length === 0">No questions yet.</p>
+</div>

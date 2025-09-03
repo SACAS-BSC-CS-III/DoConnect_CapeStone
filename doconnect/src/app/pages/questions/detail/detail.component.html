@@ -1,0 +1,26 @@
+<div *ngIf="loading">Loading...</div>
+
+<div *ngIf="!loading && question" class="question-detail">
+  <h2>{{ question.title }}</h2>
+  <p>{{ question.body }}</p>
+  <p><small>Asked by {{ question.username }} on {{ question.createdAt | date:'short' }}</small></p>
+
+  <div *ngIf="question.images?.length > 0" class="images">
+    <img *ngFor="let img of question.images" [src]="img" alt="Question Image" />
+  </div>
+
+  <h3>Answers</h3>
+  <div *ngIf="question.answers?.length > 0">
+    <div *ngFor="let a of question.answers" class="answer">
+      <p>{{ a.body }}</p>
+      <p><small>By {{ a.username }} on {{ a.createdAt | date:'short' }}</small></p>
+
+      <div *ngIf="a.images?.length > 0" class="images">
+        <img *ngFor="let img of a.images" [src]="img" alt="Answer Image" />
+      </div>
+    </div>
+  </div>
+  <p *ngIf="!question.answers || question.answers.length === 0">No answers yet.</p>
+
+  <a [routerLink]="['/questions', question.id, 'answer']" class="answer-link">Add Answer</a>
+</div>

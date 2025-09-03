@@ -1,0 +1,24 @@
+<div class="ask-container">
+  <h2>Ask a Question</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label>Title</label>
+      <input formControlName="title" />
+    </div>
+
+    <div>
+      <label>Body</label>
+      <textarea formControlName="body"></textarea>
+    </div>
+
+    <div>
+      <label>Images</label>
+      <input type="file" (change)="onFileChange($event)" multiple />
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+
+  <p *ngIf="error" class="error">{{ error }}</p>
+</div>

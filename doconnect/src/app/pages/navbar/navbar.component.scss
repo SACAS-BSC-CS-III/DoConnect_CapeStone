@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  background: #003366; // dark blue
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  a, button {
+    margin-right: 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #b3d1ff; // lighter blue on hover
+    }
+  }
+
+  button {
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    background: #4a90e2; // medium blue
+    font-weight: 600;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #0066cc;
+      color: #fff;
+    }
+  }
+
+  .spacer {
+    flex: 1; // pushes login/register/logout to the right
+  }
+}

@@ -1,0 +1,37 @@
+<div class="admin-dashboard">
+  <h2>Admin Dashboard</h2>
+
+  <button type="button" routerLink="/admin/users">Manage Users</button>
+
+
+  <div *ngIf="loading">Loading...</div>
+  <p *ngIf="error">{{ error }}</p>
+
+  <!-- Pending Questions -->
+  <section>
+    <h3>Pending Questions</h3>
+    <div *ngIf="pendingQuestions.length > 0; else noQuestions">
+      <div *ngFor="let q of pendingQuestions" class="item">
+        <p><strong>{{ q.title }}</strong> ({{ q.createdAt | date:'short' }})</p>
+        <button (click)="approveQuestion(q.id, true)">Approve</button>
+        <button (click)="approveQuestion(q.id, false)">Reject</button>
+        <button (click)="deleteQuestion(q.id)">Delete</button>
+      </div>
+    </div>
+    <ng-template #noQuestions><p>No pending questions</p></ng-template>
+  </section>
+
+  <!-- Pending Answers -->
+  <section>
+    <h3>Pending Answers</h3>
+    <div *ngIf="pendingAnswers.length > 0; else noAnswers">
+      <div *ngFor="let a of pendingAnswers" class="item">
+        <p>{{ a.body }} ({{ a.createdAt | date:'short' }})</p>
+        <button (click)="approveAnswer(a.id, true)">Approve</button>
+        <button (click)="approveAnswer(a.id, false)">Reject</button>
+        <button (click)="deleteAnswer(a.id)">Delete</button>
+      </div>
+    </div>
+    <ng-template #noAnswers><p>No pending answers</p></ng-template>
+  </section>
+</div>

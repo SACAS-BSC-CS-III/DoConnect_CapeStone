@@ -1,0 +1,12 @@
+<nav class="navbar">
+  <a routerLink="/questions">Home</a>
+
+  <a *ngIf="isLoggedIn && role === 'User'" routerLink="/ask">Ask Question</a>
+  <a *ngIf="isLoggedIn && role === 'Admin'" routerLink="/admin">Admin</a>
+
+  <span class="spacer"></span>
+
+  <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+  <a *ngIf="!isLoggedIn" routerLink="/register">Register</a>
+  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+</nav>

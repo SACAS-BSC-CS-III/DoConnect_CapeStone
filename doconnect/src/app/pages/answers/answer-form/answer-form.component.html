@@ -1,0 +1,19 @@
+<div class="answer-form">
+  <h2>Write an Answer</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label>Answer</label>
+      <textarea formControlName="body"></textarea>
+    </div>
+
+    <div>
+      <label>Images</label>
+      <input type="file" (change)="onFileChange($event)" multiple />
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+
+  <p *ngIf="error" class="error">{{ error }}</p>
+</div>

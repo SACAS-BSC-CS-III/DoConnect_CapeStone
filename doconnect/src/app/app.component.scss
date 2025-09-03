@@ -1,0 +1,31 @@
+.navbar {
+  background: #333;
+  padding: 10px;
+  color: #fff;
+}
+
+.navbar nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.content {
+  padding: 20px;
+  min-height: calc(100vh - 100px);
+}
+
+.footer {
+  background: #f4f4f4;
+  text-align: center;
+  padding: 10px;
+}

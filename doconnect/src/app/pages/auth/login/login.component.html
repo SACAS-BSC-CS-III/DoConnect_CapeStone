@@ -1,0 +1,24 @@
+<div class="auth-container">
+  <h2>Login</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label>Username</label>
+      <input type="text" formControlName="username" />
+      <small *ngIf="form.get('username')?.invalid && form.get('username')?.touched">
+        Username is required
+      </small>
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input type="password" formControlName="password" />
+      <small *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        Password is required
+      </small>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Login</button>
+    <p *ngIf="error" class="error">{{ error }}</p>
+  </form>
+</div>
