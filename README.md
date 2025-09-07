@@ -7,6 +7,7 @@
 - Angular + .NET 8 + SQL Server
 
 >>Setup Instructions
+
   >>>Backend
   1. Navigate to `DoConnect.Api`
   2. Run `dotnet ef database update`
@@ -16,7 +17,8 @@
   >>>Frontend
   1. Navigate to `doconnect`
   2. Run `npm install`
-  3. Run `ng serve -o`
+  3. RUN `npm install -g @angular/cli`
+  3. Run `ng serve`
   
   >>>Credentials
   - Admin: `admin / Admin@123`
