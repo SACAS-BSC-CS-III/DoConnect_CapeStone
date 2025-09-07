@@ -39,11 +39,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         b.Entity<ImageFile>()
             .HasOne(i => i.Question)
             .WithMany(q => q.Images)
-            .HasForeignKey(i => i.QuestionId);
+            .HasForeignKey(i => i.QuestionId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         b.Entity<ImageFile>()
             .HasOne(i => i.Answer)
             .WithMany(a => a.Images)
-            .HasForeignKey(i => i.AnswerId);
+            .HasForeignKey(i => i.AnswerId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

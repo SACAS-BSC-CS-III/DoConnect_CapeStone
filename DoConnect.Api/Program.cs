@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using System.Security.Claims;
+using Microsoft.OpenApi.Models;
+
 
 using System.Text;
 
@@ -22,6 +24,15 @@ builder.Services.AddCors(options =>
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddScoped<IJwtService, JwtService>();
 
+// if (builder.Environment.IsEnvironment("Testing"))
+// {
+//     builder.Services.AddDbContext<AppDbContext>(opt =>
+//     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+// }
+// else
+// {
+    
+// }
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
@@ -42,6 +53,40 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             RoleClaimType = ClaimTypes.Role,  
             NameClaimType = ClaimTypes.Name
         };
+    });
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoConnect API", Version = "v1" });
+
+        // Add JWT Bearer auth definition
+        var securityScheme = new OpenApiSecurityScheme
+        {
+            Name = "Authorization",
+            Description = "Enter 'Bearer' [space] and then your valid JWT token.\n\nExample: \"Bearer abcdef12345\"",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+            }
+        };
+
+        c.AddSecurityDefinition("Bearer", securityScheme);
+
+        // Require Bearer token for all endpoints shown in UI (you can restrict if you want)
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                },
+                new string[] {}
+            }
+        });
     });
 
 
@@ -110,3 +155,5 @@ app.MapControllers();
 
 // ✅ This must be the last line
 app.Run();
+
+public partial class Program {}

@@ -150,6 +150,24 @@ public class AdminController(AppDbContext db) : ControllerBase
         return NoContent();
     }
 
+    // ✅ Get all approved questions (for management)
+    [HttpGet("approved-questions")]
+    public async Task<ActionResult<IEnumerable<object>>> GetApprovedQuestions()
+    {
+        var approved = await db.Questions
+            .Where(q => q.Status == ApprovalStatus.Approved)
+            .Select(q => new {
+                q.Id,
+                q.Title,
+                q.CreatedAt,
+                q.UserId
+            })
+            .ToListAsync();
+
+        return Ok(approved);
+    }
+
+
     // --------------------------
     // 📌 Helpers
     // --------------------------
