@@ -34,4 +34,15 @@
     </div>
     <ng-template #noAnswers><p>No pending answers</p></ng-template>
   </section>
+  <!-- Approved Questions -->
+  <section>
+    <h3>Approved Questions</h3>
+    <div *ngIf="approvedQuestions.length > 0; else noApproved">
+      <div *ngFor="let q of approvedQuestions" class="item">
+        <p><strong>{{ q.title }}</strong> ({{ q.createdAt | date:'short' }})</p>
+        <button (click)="deleteApprovedQuestion(q.id)">Delete</button>
+      </div>
+    </div>
+    <ng-template #noApproved><p>No approved questions</p></ng-template>
+  </section>
 </div>

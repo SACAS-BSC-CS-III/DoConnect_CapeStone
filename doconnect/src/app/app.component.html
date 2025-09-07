@@ -1,18 +1,13 @@
 <!-- app.component.html -->
 <header class="navbar">
-  <nav>
-    <a routerLink="/questions" routerLinkActive="active">Questions</a>
-    <a routerLink="/ask" *ngIf="isLoggedIn()">Ask Question</a>
-    <a routerLink="/admin" *ngIf="isAdmin()">Admin Dashboard</a>
-    <span class="spacer"></span>
-    <a routerLink="/login" *ngIf="!isLoggedIn()">Login</a>
-    <a routerLink="/register" *ngIf="!isLoggedIn()">Register</a>
-    <a href="#" (click)="logout()" *ngIf="isLoggedIn()">Logout</a>
-  </nav>
+  <div class="brand">
+    DoConnect
+  </div>
 </header>
 
 <main class="content">
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
 </main>
+
 <app-footer></app-footer>

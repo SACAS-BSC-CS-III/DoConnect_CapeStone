@@ -14,6 +14,7 @@ import { environment } from '../../../../environments/environment';
 export class AdminDashboardComponent implements OnInit {
   pendingQuestions: any[] = [];
   pendingAnswers: any[] = [];
+  approvedQuestions: any[] = [];
   loading = true;
   error: string | null = null;
 
@@ -29,6 +30,7 @@ export class AdminDashboardComponent implements OnInit {
         next: (res) => {
           this.pendingQuestions = res.questions || [];
           this.pendingAnswers = res.answers || [];
+          this.loadApproved();
           this.loading = false;
         },
         error: () => {
@@ -36,6 +38,23 @@ export class AdminDashboardComponent implements OnInit {
           this.loading = false;
         }
       });
+  }
+  
+  loadApproved() {
+    this.http.get<any[]>(`${environment.apiUrl}/admin/approved-questions`)
+      .subscribe({
+        next: (res) => {
+          this.approvedQuestions = res || [];
+        },
+        error: () => {
+          this.error = 'Failed to load approved questions';
+        }
+      });
+  }
+
+  deleteApprovedQuestion(id: number) {
+    this.http.delete(`${environment.apiUrl}/admin/questions/${id}`)
+      .subscribe(() => this.loadApproved());
   }
 
   approveQuestion(id: number, approve: boolean) {

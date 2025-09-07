@@ -1,14 +1,30 @@
 <div class="questions">
   <h2>Questions</h2>
 
-  <div *ngIf="loading">Loading...</div>
+  <div class="toolbar">
+    <input
+      type="search"
+      placeholder="Search questions (title or body)..."
+      [(ngModel)]="query"
+      (input)="onSearchInput()"
+      aria-label="Search questions"
+    />
+    <div class="meta">
+      <span *ngIf="!loading">{{ questions.length }} result{{ questions.length === 1 ? '' : 's' }}</span>
+      <span *ngIf="loading">Loading…</span>
+    </div>
+  </div>
 
-  <ul *ngIf="!loading && questions.length > 0">
-    <li *ngFor="let q of questions">
+  <div *ngIf="loading && !questions.length" class="loading">Loading questions…</div>
+
+  <ul *ngIf="!loading && filtered.length > 0">
+    <li *ngFor="let q of filtered">
       <a [routerLink]="['/questions', q.id]">{{ q.title }}</a>
-      <small>by {{ q.username }} on {{ q.createdAt | date:'short' }}</small>
+      <small>by {{ q.username }} • {{ q.createdAt | date:'short' }}</small>
     </li>
   </ul>
 
-  <p *ngIf="!loading && questions.length === 0">No questions yet.</p>
+  <p *ngIf="!loading && filtered.length === 0" class="empty">
+    No questions found. Try a different search or ask the first question.
+  </p>
 </div>

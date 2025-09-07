@@ -29,3 +29,31 @@
   text-align: center;
   padding: 10px;
 }
+
+/* app.component.scss */
+
+.navbar {
+  background-color: #3f51b5; // project primary color (you can change)
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: default;
+
+    &:hover {
+      color: #ffca28; // accent on hover
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+.content {
+  padding: 1rem 2rem;
+}

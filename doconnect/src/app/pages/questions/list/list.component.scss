@@ -1,48 +1,111 @@
 .questions {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: #ffffff;
+  max-width: 900px;
+  margin: 2.25rem auto;
+  padding: 1.75rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.1);
+  box-shadow: 0 8px 24px rgba(2, 24, 52, 0.06);
+  border: 1px solid rgba(74, 144, 226, 0.06);
 
   h2 {
-    margin-bottom: 1.5rem;
-    text-align: center;
+    margin-bottom: 1rem;
+    text-align: left;
     color: #003366;
+    font-size: 1.45rem;
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    input[type="search"] {
+      flex: 1 1 auto;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid #dfeffa;
+      background: #fff;
+      font-size: 0.98rem;
+      outline: none;
+      box-shadow: none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+
+      &:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.14);
+      }
+    }
+
+    .meta {
+      color: #556b7a;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+  }
+
+  .loading {
+    padding: 1rem;
+    color: #556b7a;
   }
 
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 
     li {
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border-bottom: 1px solid #e6f0ff;
+      margin-bottom: 0.9rem;
+      padding: 0.9rem 0.7rem;
+      border-radius: 8px;
+      transition: background .12s ease, transform .08s ease;
+      display: flex;
+      flex-direction: column;
+
+      &:hover {
+        background: rgba(74, 144, 226, 0.03);
+        transform: translateY(-2px);
+      }
 
       a {
         font-weight: 600;
-        font-size: 1.1rem;
-        color: #4a90e2;
+        font-size: 1.05rem;
+        color: #0b63b7;
         text-decoration: none;
 
         &:hover {
           text-decoration: underline;
-          color: #003366;
         }
       }
 
       small {
         display: block;
-        margin-top: 0.3rem;
-        font-size: 0.9rem;
-        color: #666;
+        margin-top: 0.35rem;
+        font-size: 0.86rem;
+        color: #718096;
       }
     }
 
     li:last-child {
-      border-bottom: none;
+      margin-bottom: 0;
     }
+  }
+
+  .empty {
+    padding: 1rem;
+    color: #718096;
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .questions {
+    padding: 1rem;
+
+    h2 { font-size: 1.2rem; }
+
+    .toolbar { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+
+    .meta { text-align: right; }
   }
 }
